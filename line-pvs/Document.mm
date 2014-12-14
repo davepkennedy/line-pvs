@@ -6,18 +6,23 @@
 //  Copyright (c) 2014 Dave Kennedy. All rights reserved.
 //
 
-#import "Document.h"
+#import "Document.hh"
+#import "Line.h"
 
 @interface Document ()
 
 @end
 
+
 @implementation Document
+
+NSPoint start;
 
 - (instancetype)init {
     self = [super init];
     if (self) {
         // Add your subclass-specific initialization here.
+        //_lines = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -50,6 +55,20 @@
     // If you override either of these, you should also override -isEntireFileLoaded to return NO if the contents are lazily loaded.
     [NSException raise:@"UnimplementedMethod" format:@"%@ is unimplemented", NSStringFromSelector(_cmd)];
     return YES;
+}
+
+- (std::vector<pvs::Line>&) lines {
+    return _lines;
+}
+
+- (void) startLine: (NSPoint) point {
+    NSLog(@"Start [%f,%f]", point.x, point.y);
+    start = point;
+}
+
+- (void) endLine: (NSPoint) point {
+    NSLog(@"End [%f,%f]", point.x, point.y);
+    _lines.push_back(pvs::Line(start.x, start.y, point.x, point.y));
 }
 
 @end

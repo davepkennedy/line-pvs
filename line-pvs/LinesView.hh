@@ -1,5 +1,5 @@
 //
-//  Document.h
+//  LinesView.h
 //  line-pvs
 //
 //  Created by Dave Kennedy on 12/12/2014.
@@ -8,8 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface Document : NSDocument
-
+@interface LinesView : NSView
 
 @end
-

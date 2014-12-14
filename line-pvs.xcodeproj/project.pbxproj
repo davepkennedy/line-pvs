@@ -9,11 +9,15 @@
 /* Begin PBXBuildFile section */
 		554DE66A1A3B82CE00772256 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 554DE6691A3B82CE00772256 /* AppDelegate.m */; };
 		554DE66C1A3B82CE00772256 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 554DE66B1A3B82CE00772256 /* main.m */; };
-		554DE66F1A3B82CE00772256 /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = 554DE66E1A3B82CE00772256 /* Document.m */; };
+		554DE66F1A3B82CE00772256 /* Document.mm in Sources */ = {isa = PBXBuildFile; fileRef = 554DE66E1A3B82CE00772256 /* Document.mm */; };
 		554DE6721A3B82CE00772256 /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = 554DE6701A3B82CE00772256 /* Document.xib */; };
 		554DE6741A3B82CE00772256 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 554DE6731A3B82CE00772256 /* Images.xcassets */; };
 		554DE6771A3B82CE00772256 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 554DE6751A3B82CE00772256 /* MainMenu.xib */; };
 		554DE6831A3B82CE00772256 /* line_pvsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 554DE6821A3B82CE00772256 /* line_pvsTests.m */; };
+		554DE68E1A3B836D00772256 /* LinesView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 554DE68D1A3B836D00772256 /* LinesView.mm */; };
+		554DE6B21A3E221800772256 /* Line.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 554DE6B01A3E221800772256 /* Line.cpp */; };
+		554DE6B51A3E225600772256 /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 554DE6B31A3E225600772256 /* Point.cpp */; };
+		554DE6B81A3E231000772256 /* Size.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 554DE6B61A3E231000772256 /* Size.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +36,22 @@
 		554DE6681A3B82CE00772256 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		554DE6691A3B82CE00772256 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		554DE66B1A3B82CE00772256 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		554DE66D1A3B82CE00772256 /* Document.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Document.h; sourceTree = "<group>"; };
-		554DE66E1A3B82CE00772256 /* Document.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Document.m; sourceTree = "<group>"; };
+		554DE66D1A3B82CE00772256 /* Document.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Document.hh; sourceTree = "<group>"; };
+		554DE66E1A3B82CE00772256 /* Document.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Document.mm; sourceTree = "<group>"; };
 		554DE6711A3B82CE00772256 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Document.xib; sourceTree = "<group>"; };
 		554DE6731A3B82CE00772256 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		554DE6761A3B82CE00772256 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		554DE67C1A3B82CE00772256 /* line-pvsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "line-pvsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		554DE6811A3B82CE00772256 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		554DE6821A3B82CE00772256 /* line_pvsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = line_pvsTests.m; sourceTree = "<group>"; };
+		554DE68C1A3B836D00772256 /* LinesView.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LinesView.hh; sourceTree = "<group>"; };
+		554DE68D1A3B836D00772256 /* LinesView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LinesView.mm; sourceTree = "<group>"; };
+		554DE6B01A3E221800772256 /* Line.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Line.cpp; sourceTree = "<group>"; };
+		554DE6B11A3E221800772256 /* Line.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Line.h; sourceTree = "<group>"; };
+		554DE6B31A3E225600772256 /* Point.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Point.cpp; sourceTree = "<group>"; };
+		554DE6B41A3E225600772256 /* Point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Point.h; sourceTree = "<group>"; };
+		554DE6B61A3E231000772256 /* Size.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Size.cpp; sourceTree = "<group>"; };
+		554DE6B71A3E231000772256 /* Size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Size.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,12 +95,20 @@
 			children = (
 				554DE6681A3B82CE00772256 /* AppDelegate.h */,
 				554DE6691A3B82CE00772256 /* AppDelegate.m */,
-				554DE66D1A3B82CE00772256 /* Document.h */,
-				554DE66E1A3B82CE00772256 /* Document.m */,
+				554DE66D1A3B82CE00772256 /* Document.hh */,
+				554DE66E1A3B82CE00772256 /* Document.mm */,
 				554DE6701A3B82CE00772256 /* Document.xib */,
 				554DE6731A3B82CE00772256 /* Images.xcassets */,
 				554DE6751A3B82CE00772256 /* MainMenu.xib */,
 				554DE6661A3B82CE00772256 /* Supporting Files */,
+				554DE68C1A3B836D00772256 /* LinesView.hh */,
+				554DE68D1A3B836D00772256 /* LinesView.mm */,
+				554DE6B01A3E221800772256 /* Line.cpp */,
+				554DE6B11A3E221800772256 /* Line.h */,
+				554DE6B31A3E225600772256 /* Point.cpp */,
+				554DE6B41A3E225600772256 /* Point.h */,
+				554DE6B61A3E231000772256 /* Size.cpp */,
+				554DE6B71A3E231000772256 /* Size.h */,
 			);
 			path = "line-pvs";
 			sourceTree = "<group>";
@@ -219,9 +239,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				554DE66F1A3B82CE00772256 /* Document.m in Sources */,
+				554DE6B51A3E225600772256 /* Point.cpp in Sources */,
+				554DE68E1A3B836D00772256 /* LinesView.mm in Sources */,
+				554DE66F1A3B82CE00772256 /* Document.mm in Sources */,
+				554DE6B81A3E231000772256 /* Size.cpp in Sources */,
 				554DE66C1A3B82CE00772256 /* main.m in Sources */,
 				554DE66A1A3B82CE00772256 /* AppDelegate.m in Sources */,
+				554DE6B21A3E221800772256 /* Line.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
