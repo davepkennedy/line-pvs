@@ -7,8 +7,10 @@
 //
 
 #include "Line.h"
+#include <iostream>
 
 using namespace pvs;
+using namespace std;
 
 Line::Line(Point start, Point end)
 : _start(start), _end(end)
@@ -23,7 +25,8 @@ Line::Line(float sx, float sy, float ex, float ey)
 Line Line::normal() const
 {
     Size v = vector();
-    return Line(-v.cy(),v.cx(),v.cy(),-v.cx());
+    //return Line(-v.cy(),v.cx(),v.cy(),-v.cx());
+    return Line(0,0,v.cy(),-v.cx());
 }
 
 Size Line::vector() const
@@ -45,21 +48,43 @@ bool Line::atT(float t, Point& pt) const
     return true;
 }
 
-bool split(const Line& pivot, const Line& target, float& t)
+Line Line::unit() const {
+    float dx = _end.x() - _start.x();
+    float dy = _end.y() - _start.y();
+    float l = length() / 2.0;
+    
+    return Line(_start.x(), _start.y(),
+                _start.x() + (dx / l), _start.y() + (dy / l));
+}
+
+float Line::denominator(const Line& target) const {
+    return (-normal().vector()).dot(target.vector());
+}
+
+float Line::numerator (const Line& target) const {
+    return (normal().vector().dot(target.start() - end()));
+}
+
+bool Line::split(const Line& target, float& t) const
 {
-    if (pivot.vector() == target.vector()) {
+    if (vector() == target.vector()) {
         return false;
     }
     
     if (target.length()) {
-        Size N = pivot.normal().vector();
-        Size D = target.vector();
-        float nNdD = (-N).dot(D);
-        if (nNdD == 0) {
+        float numer = numerator(target);
+        float denom = denominator(target);
+        if (denom == 0) {
             return false;
         }
-        t = (N.dot(target.start() - pivot.end())) / nNdD;
+        t = numer / denom;
         return true;
     }
     return false;
+}
+
+bool Line::isBehind(const Point& pt) const {
+    float b = numerator(Line(start(), pt));
+    cerr << "Behindness of (" << pt.x() << "," << pt.y() << ")r is " << b << endl;
+    return b < 0;
 }

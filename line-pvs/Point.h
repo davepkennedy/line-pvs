@@ -21,6 +21,10 @@ namespace pvs {
         inline float x() const {return _x;}
         inline float y() const {return _y;}
         
+        inline bool operator== (const Point& other) const {
+            return (x() == other.x()) && (y() == other.y());
+        }
+        
         inline Point operator- (const Point& other) const {
             return Point(x() - other.x(), y() - other.y());
         }

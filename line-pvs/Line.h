@@ -19,6 +19,14 @@ namespace pvs
     private:
         Point _start;
         Point _end;
+    private:
+        float numerator (const Line& target) const;
+        float denominator(const Line& target) const;
+    public:
+        inline bool operator == (const Line& other) const {
+            return (start() == other.start()) &&
+                    (end() == other.end());
+        }
     public:
         Line (Point start, Point end);
         Line (float sx, float sy, float ex, float ey);
@@ -26,12 +34,15 @@ namespace pvs
         inline Point end() const {return _start;}
         Line normal() const;
         Size vector() const;
+        Line unit() const;
         float length() const {
             return vector().magnitude();
         }
         bool atT(float t, Point& pt) const;
+        
+        bool split(const pvs::Line& target, float& t) const;
+        bool isBehind(const Point& pt) const;
     };
 }
 
-bool split(const pvs::Line& pivot, const pvs::Line& target, float& t);
 #endif /* defined(__line_pvs__Line__) */

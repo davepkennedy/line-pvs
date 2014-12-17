@@ -7,7 +7,7 @@
 //
 
 #import "LinesView.hh"
-#import "Document.hh"
+#import "Document.h"
 #import "Line.h"
 
 #include <math.h>
@@ -17,7 +17,7 @@
 static NSPoint start;
 static NSPoint end;
 
-NSPoint toNSPoint (pvs::Point pt) {
+static NSPoint toNSPoint (pvs::Point pt) {
     return CGPointMake(pt.x(), pt.y());
 }
 
@@ -26,7 +26,6 @@ NSPoint toNSPoint (pvs::Point pt) {
 }
 
 - (void) drawGrid: (NSRect) rect {
-    NSLog(@"Start [%f,%f], End [%f,%f]", start.x, start.y, end.x, end.y);
     [[NSColor lightGrayColor] setStroke];
     
     for (int i = 0; i < rect.size.width; i += 10) {
@@ -37,12 +36,21 @@ NSPoint toNSPoint (pvs::Point pt) {
     }
 }
 
+- (void) drawLine:(const pvs::Line&) line {
+    [NSBezierPath strokeLineFromPoint:toNSPoint(line.start())
+                              toPoint:toNSPoint(line.end())];
+}
+
 - (void) drawLines: (const std::vector<pvs::Line>&) lines {
     for (std::vector<pvs::Line>::const_iterator line = lines.begin();
          line != lines.end(); line++) {
         
-        [NSBezierPath strokeLineFromPoint:toNSPoint(line->start())
-                                  toPoint:toNSPoint(line->end())];
+        pvs::Line n = line->normal();
+        pvs::Point pt;
+        line->atT(0.5, pt);
+        
+        [self drawLine:(*line)];
+        [self drawLine:pvs::Line(n.start() + pt, n.end() + pt)];
     }
 }
 
@@ -55,61 +63,43 @@ NSPoint toNSPoint (pvs::Point pt) {
                                                       radius)] fill];
 }
 
-- (void) drawDots: (const std::vector<pvs::Line>&) lines {
+- (void) drawStart:(pvs::Point)pt {
     [[NSColor greenColor] setFill];
     [[NSColor greenColor] setStroke];
-    for (std::vector<pvs::Line>::const_iterator line = lines.begin();
-         line != lines.end(); line++) {
-        [self drawCircle:toNSPoint(line->start())];
-    }
-    
+    [self drawCircle:toNSPoint(pt)];
+}
+
+- (void) drawEnd:(pvs::Point)pt {
     [[NSColor redColor] setFill];
     [[NSColor redColor] setStroke];
+    [self drawCircle:toNSPoint(pt)];
+}
+
+- (void) drawDots: (const std::vector<pvs::Line>&) lines {
     for (std::vector<pvs::Line>::const_iterator line = lines.begin();
          line != lines.end(); line++) {
-
-        [self drawCircle:toNSPoint(line->end())];
+        [self drawStart:line->start()];
+        [self drawEnd:line->end()];
+        
     }
 }
 
-- (void) drawLine: (const pvs::Line&) pivot
-        splitting: (const std::vector<pvs::Line>&) lines
-{
-    [[NSColor orangeColor] setFill];
-    [[NSColor orangeColor] setStroke];
+- (void)drawCurrentLineset {
+    [[NSColor blackColor] setStroke];
+    [NSBezierPath strokeLineFromPoint:start toPoint:end];
+    Document* doc = (Document*)[[self window] delegate];
+    [self drawLines:[doc lines]];
     
-    for (std::vector<pvs::Line>::const_iterator line = lines.begin();
-         line != lines.end(); line++) {
-        float t;
-        pvs::Point pt;
-        if (split(pivot, *line, t)) {
-            NSLog(@"Pivot split a line");
-            if (line->atT(t, pt)) {
-                NSLog(@"T-point lies on line");
-                [self drawCircle:toNSPoint(pt)];
-            }
-        }
-        [self drawCircle:toNSPoint(line->start())];
-    }
+    [self drawLine:pvs::Line(start.x, start.y, end.x, end.y)];
+    [self drawDots:[doc lines]];
 }
 
 - (void)drawRect:(NSRect)dirtyRect {
     [super drawRect:dirtyRect];
     
-    NSLog(@"Dirty rect: [%f,%f,%f,%f]", dirtyRect.origin.x, dirtyRect.origin.y, dirtyRect.size.width, dirtyRect.size.height);
-    
     // Drawing code here.
     [self drawGrid:dirtyRect];
-    
-    [[NSColor blackColor] setStroke];
-    [NSBezierPath strokeLineFromPoint:start toPoint:end];
-    Document* doc = (Document*)[[self window] delegate];
-    [doc lines];
-    [self drawLines:[doc lines]];
-    [self drawDots:[doc lines]];
-    
-    [self drawLine: pvs::Line(start.x, start.y, end.x, end.y)
-         splitting: [doc lines]];
+    [self drawCurrentLineset];
 }
 
 NSPoint clampPoint (NSPoint point) {
@@ -122,14 +112,12 @@ NSPoint clampPoint (NSPoint point) {
     Document* doc = (Document*)[[self window] delegate];
     start = end = clampPoint([self convertPoint:[theEvent locationInWindow] fromView:nil]);
     [doc startLine:start];
-    NSLog(@"Start(%f,%f)", start.x, start.y);
     [self setNeedsDisplay:YES];
 }
 
 - (void) mouseDragged:(NSEvent *)theEvent {
     end = clampPoint([self convertPoint:[theEvent locationInWindow] fromView:nil]);
     
-    NSLog(@"Move(%f,%f)", end.x, end.y);
     [self setNeedsDisplay:YES];
 }
 
@@ -137,7 +125,6 @@ NSPoint clampPoint (NSPoint point) {
     Document* doc = (Document*)[[self window] delegate];
     //end = [self convertPoint:[theEvent locationInWindow] fromView:nil];
     
-    NSLog(@"Move(%f,%f)", end.x, end.y);
     [doc endLine:end];
     [self setNeedsDisplay:YES];
 }

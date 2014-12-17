@@ -6,8 +6,7 @@
 //  Copyright (c) 2014 Dave Kennedy. All rights reserved.
 //
 
-#import "Document.hh"
-#import "Line.h"
+#import "Document.h"
 
 @interface Document ()
 
@@ -23,6 +22,7 @@ NSPoint start;
     if (self) {
         // Add your subclass-specific initialization here.
         //_lines = [[NSMutableArray alloc] init];
+        _bspTree = NULL;
     }
     return self;
 }
@@ -61,14 +61,26 @@ NSPoint start;
     return _lines;
 }
 
+- (const pvs::LineNode*) bspTree {
+    return _bspTree;
+}
+
 - (void) startLine: (NSPoint) point {
-    NSLog(@"Start [%f,%f]", point.x, point.y);
     start = point;
 }
 
 - (void) endLine: (NSPoint) point {
-    NSLog(@"End [%f,%f]", point.x, point.y);
     _lines.push_back(pvs::Line(start.x, start.y, point.x, point.y));
+    [self compile:self];
+}
+
+
+- (IBAction)compile:(id)sender {
+    if (_bspTree) {
+        delete _bspTree;
+    }
+    _bspTree = compile (_lines);
+    [bspView setNeedsDisplay:YES];
 }
 
 @end

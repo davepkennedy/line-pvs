@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5526C73E1A40CCDC00C35325 /* LineNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5526C73C1A40CCDC00C35325 /* LineNode.cpp */; };
+		5543ADEA1A4219F300877634 /* BSPView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5543ADE91A4219F300877634 /* BSPView.mm */; };
 		554DE66A1A3B82CE00772256 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 554DE6691A3B82CE00772256 /* AppDelegate.m */; };
 		554DE66C1A3B82CE00772256 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 554DE66B1A3B82CE00772256 /* main.m */; };
 		554DE66F1A3B82CE00772256 /* Document.mm in Sources */ = {isa = PBXBuildFile; fileRef = 554DE66E1A3B82CE00772256 /* Document.mm */; };
@@ -31,12 +33,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5526C73C1A40CCDC00C35325 /* LineNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LineNode.cpp; sourceTree = "<group>"; };
+		5526C73D1A40CCDC00C35325 /* LineNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineNode.h; sourceTree = "<group>"; };
+		5543ADE81A4219F300877634 /* BSPView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSPView.h; sourceTree = "<group>"; };
+		5543ADE91A4219F300877634 /* BSPView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BSPView.mm; sourceTree = "<group>"; };
 		554DE6631A3B82CE00772256 /* line-pvs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "line-pvs.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		554DE6671A3B82CE00772256 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		554DE6681A3B82CE00772256 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		554DE6691A3B82CE00772256 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		554DE66B1A3B82CE00772256 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		554DE66D1A3B82CE00772256 /* Document.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Document.hh; sourceTree = "<group>"; };
+		554DE66D1A3B82CE00772256 /* Document.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Document.h; sourceTree = "<group>"; };
 		554DE66E1A3B82CE00772256 /* Document.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Document.mm; sourceTree = "<group>"; };
 		554DE6711A3B82CE00772256 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Document.xib; sourceTree = "<group>"; };
 		554DE6731A3B82CE00772256 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -95,7 +101,7 @@
 			children = (
 				554DE6681A3B82CE00772256 /* AppDelegate.h */,
 				554DE6691A3B82CE00772256 /* AppDelegate.m */,
-				554DE66D1A3B82CE00772256 /* Document.hh */,
+				554DE66D1A3B82CE00772256 /* Document.h */,
 				554DE66E1A3B82CE00772256 /* Document.mm */,
 				554DE6701A3B82CE00772256 /* Document.xib */,
 				554DE6731A3B82CE00772256 /* Images.xcassets */,
@@ -109,6 +115,10 @@
 				554DE6B41A3E225600772256 /* Point.h */,
 				554DE6B61A3E231000772256 /* Size.cpp */,
 				554DE6B71A3E231000772256 /* Size.h */,
+				5526C73C1A40CCDC00C35325 /* LineNode.cpp */,
+				5526C73D1A40CCDC00C35325 /* LineNode.h */,
+				5543ADE81A4219F300877634 /* BSPView.h */,
+				5543ADE91A4219F300877634 /* BSPView.mm */,
 			);
 			path = "line-pvs";
 			sourceTree = "<group>";
@@ -242,9 +252,11 @@
 				554DE6B51A3E225600772256 /* Point.cpp in Sources */,
 				554DE68E1A3B836D00772256 /* LinesView.mm in Sources */,
 				554DE66F1A3B82CE00772256 /* Document.mm in Sources */,
+				5526C73E1A40CCDC00C35325 /* LineNode.cpp in Sources */,
 				554DE6B81A3E231000772256 /* Size.cpp in Sources */,
 				554DE66C1A3B82CE00772256 /* main.m in Sources */,
 				554DE66A1A3B82CE00772256 /* AppDelegate.m in Sources */,
+				5543ADEA1A4219F300877634 /* BSPView.mm in Sources */,
 				554DE6B21A3E221800772256 /* Line.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -440,6 +452,7 @@
 				554DE6881A3B82CE00772256 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		554DE6891A3B82CE00772256 /* Build configuration list for PBXNativeTarget "line-pvsTests" */ = {
 			isa = XCConfigurationList;
@@ -448,6 +461,7 @@
 				554DE68B1A3B82CE00772256 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
