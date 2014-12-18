@@ -131,11 +131,11 @@ const LineNode* compile (const vector<Line>& lines)
                 line->atT(tintersect, mid);
                 
                 if (n < 0.0) {
-                    frontLines.push_back(Line(line->start(), mid));
-                    backLines.push_back(Line(mid, line->end()));
+                    frontLines.push_back(Line(mid, line->start()));
+                    backLines.push_back(Line(line->end(),mid));
                 } else {
-                    backLines.push_back(Line(line->start(), mid));
-                    frontLines.push_back(Line(mid, line->end()));
+                    backLines.push_back(Line(mid, line->start()));
+                    frontLines.push_back(Line(line->end(), mid));
                 }
             } else {
                 if (n < 0.0) {

@@ -50,8 +50,15 @@ static NSPoint toNSPoint (pvs::Point pt) {
 
 - (void) drawTree:(const pvs::LineNode*) tree
 {
+    pvs::Point mid;
+    tree->line().atT(0.5, mid);
+    
+    pvs::Line n = tree->line().normal();
     [NSBezierPath strokeLineFromPoint:toNSPoint(tree->line().start())
                               toPoint:toNSPoint(tree->line().end())];
+    
+    [NSBezierPath strokeLineFromPoint:toNSPoint(n.start() + mid)
+                              toPoint:toNSPoint(n.end() + mid)];
     if (tree->left()) {
         [[NSColor blueColor] setStroke];
         [self drawTree:tree->left()];
